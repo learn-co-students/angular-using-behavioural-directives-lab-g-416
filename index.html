@@ -1,27 +1,31 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Angular Application</title>
 </head>
+
 <body>
 
     <div ng-app="app">
         <div ng-controller="ContactController as vm">
             <ul>
-                <li>
-                    <h4>Contact Name</h4>
-                    <h6>Phone Number</h6>
+                <li ng-repeat="contact in vm.contacts">
+                    <h4>{{ contact.name }}</h4>
+                    <h6>{{ contact.phone }}</h6>
                 </li>
             </ul>
+            <button ng-click="vm.addContact()">Add</button>
         </div>
     </div>
 
-    <script src="js/angular.js"></script>
-    <script src="js/app/app.js"></script>
-    <script src="js/app/controllers/ContactController.js"></script>
+    <script src=" js/angular.js "></script>
+    <script src="js/app/app.js "></script>
+    <script src="js/app/controllers/ContactController.js "></script>
 
 </body>
+
 </html>
