@@ -15,6 +15,7 @@ function ContactController() {
             name: 'New Contact',
             phone: 'Phone Number'
         });
+       console.log(this.contacts) 
     }
 }
 

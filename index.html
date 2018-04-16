@@ -9,13 +9,27 @@
 <body>
 
     <div ng-app="app">
-        <div ng-controller="ContactController as vm">
+<!--         <div ng-controller="ContactController as vm">
             <ul>
-                <li>
-                    <h4>Contact Name</h4>
-                    <h6>Phone Number</h6>
+                <li ng-repeat="contact in vm.contacts">
+                    <h4>{{contact.name}}</h4>
+                    <h6>{{contact.phone}}</h6>
                 </li>
             </ul>
+            <input ng-model="vm.name" placeholder="Name">
+            <input ng-model="vm.contacts.phone" placeholder="Phone Number">
+            <button ng-click="vm.addContact()">Add Contact</button>
+        </div> -->
+
+            <div ng-controller="ContactController as vm">
+            <ul>
+                <li ng-repeat="contact in vm.contacts">
+                    <h4>Name: <input ng-model="contact.name" /></h4>
+                    <h6>Phone: <input ng-model="contact.phone" /></h6>
+                </li>
+            </ul>
+
+            <button ng-click="vm.addContact()">Add Contact</button>
         </div>
     </div>
 
