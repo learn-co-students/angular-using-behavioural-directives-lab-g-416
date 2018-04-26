@@ -6,22 +6,85 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Angular Application</title>
 </head>
-<body>
+<body ng-app="app">
 
-    <div ng-app="app">
-        <div ng-controller="ContactController as vm">
-            <ul>
-                <li>
-                    <h4>Contact Name</h4>
-                    <h6>Phone Number</h6>
-                </li>
-            </ul>
-        </div>
+  <h1>Our Contacts:</h1>
+  <div ng-controller="ContactController as vm">
+
+    <!-- Add contact -->
+
+    <button ng-click="vm.startAddContact()"
+            ng-show="!vm.isInAddMode()">
+      Add new contact
+    </button>
+
+    <!-- Add mode -->
+    <div ng-show="vm.isInAddMode()">
+      <input placeholder="Name"
+             ng-model="vm.currentContact.name" >
+      <input placeholder="Phone"
+             ng-model="vm.currentContact.phone" >
+      <button ng-click="vm.addContact()">Add</button>
+      <button ng-click="vm.cancel()">Cancel</button>
     </div>
 
-    <script src="js/angular.js"></script>
-    <script src="js/app/app.js"></script>
-    <script src="js/app/controllers/ContactController.js"></script>
+    <div ng-repeat="contact in vm.contacts | orderBy: '$index'">
+
+      <!-- view mode -->
+
+      <div ng-show="vm.isInViewMode(contact.id)">
+        <h4><strong>{{$index + 1}}: {{contact.name}}</strong> - {{contact.phone}}</h4>
+
+        <!-- Task Options -->
+        <div ng-show="!vm.isInEditMode(contact.id) || !vm.isInRemoveMode(contact.id)">
+
+          <button ng-click="vm.startEditContact(contact.id)">Edit</button>
+          <button ng-click="vm.startRemoveContact(contact.id)">Delete</button>
+        </div>
+
+        <!-- End of Task Options -->
+      </div>
+
+      <!-- end view mode -->
+
+      <!-- start edit mode -->
+      <div ng-show="vm.isInEditMode(contact.id)">
+        <input placeholder="Name"
+               ng-model="vm.currentContact.name" >
+        <input placeholder="Phone"
+               ng-model="vm.currentContact.phone" >
+
+        <!-- Task Options -->
+
+        <button ng-click="vm.save()">Save</button>
+        <button ng-click="vm.cancel()">Cancel</button>
+
+        <!-- End of Task Options -->
+      </div>
+
+      <!-- end edit mode -->
+
+      <!-- start remove mode -->
+      <div ng-show="vm.isInRemoveMode(contact.id)">
+        <h4><strong>{{$index + 1}}: {{contact.name}}</strong> - {{contact.phone}}</h4>
+
+        <!-- Task Options -->
+
+        <button ng-click="vm.remove(contact.id)">Confirm</button>
+        <button ng-click="vm.cancel()">Cancel</button>
+
+        <!-- End of Task Options -->
+      </div>
+
+      <!-- end remove mode -->
+    </div>
+    <!-- end loop in vm.contacts -->
+  </div>
+  <!-- end ng-controller div -->
+
+  <script src="js/angular.js"></script>
+  <script src="js/app/app.js"></script>
+  <script src="js/app/controllers/ContactController.js"></script>
 
 </body>
 </html>
