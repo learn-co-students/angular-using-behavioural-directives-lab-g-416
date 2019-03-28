@@ -10,6 +10,7 @@
 
     <div ng-app="app">
         <div ng-controller="ContactController as vm">
+            <button>Add Contact</button>
             <ul>
                 <li ng-repeat='contact in vm.contacts'>
                     <h4>Contact Name: {{ contact.name }}</h4>
