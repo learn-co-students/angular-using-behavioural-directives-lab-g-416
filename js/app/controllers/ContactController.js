@@ -16,6 +16,11 @@ function ContactController() {
             phone: 'Phone Number'
         });
     }
+
+    this.newContact = {};
+    this.addContact = function() {
+        this.contacts.push(this.newContact)
+    }
 }
 
 angular
