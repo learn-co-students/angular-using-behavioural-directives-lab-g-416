@@ -12,10 +12,11 @@
         <div ng-controller="ContactController as vm">
             <ul>
                 <li>
-                    <h4>Contact Name</h4>
-                    <h6>Phone Number</h6>
+                    <h4>Contact Name: <input ng-model="contact.name"/></h4>
+                    <h6>Phone Number: <input ng-model="contact.phone"/></h6>
                 </li>
             </ul>
+            <button ng-onClick="vm.addContact()">Add New Contact</button>
         </div>
     </div>
 
